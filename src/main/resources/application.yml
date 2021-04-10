@@ -1,0 +1,6 @@
+my:
+  app:
+    prop2: value3
+    prop:
+      - value1
+      - value2
