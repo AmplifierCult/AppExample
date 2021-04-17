@@ -5,6 +5,15 @@ import java.util.Objects;
 public class Tag {
     private long id;
     private String name;
+    private Photo photo;
+
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo sphoto) {
+        this.photo = photo;
+    }
 
     public long getId() {
         return id;
@@ -33,5 +42,14 @@ public class Tag {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", photo=" + photo +
+                '}';
     }
 }

@@ -12,7 +12,8 @@ public class Comment {
     private User author;
     private Instant creationDate = Instant.now();
     private String content = "";
-    private byte[] photo;
+    private Photo photo;
+
 
     public User getAuthor() {
         return author;
@@ -38,11 +39,11 @@ public class Comment {
         this.content = content;
     }
 
-    public byte[] getPhoto() {
+    public Photo getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(Photo photo) {
         this.photo = photo;
     }
 

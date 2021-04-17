@@ -1,14 +1,15 @@
 package com.example.demo.model;
 
+import java.time.Instant;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Photo {
     private long id;
-    private String creationDate;
+    private Instant creationDate = Instant.now();
     private String name;
-    private String data;
-    private String author;
-
+    private byte [] data;
+    private User author;
 
     public long getId() {
         return id;
@@ -18,11 +19,11 @@ public class Photo {
         this.id = id;
     }
 
-    public String getCreationDate() {
+    public Instant getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(Instant creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -34,19 +35,19 @@ public class Photo {
         this.name = name;
     }
 
-    public String getData() {
+    public byte [] getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(byte [] data) {
         this.data = data;
     }
 
-    public String getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 
@@ -55,11 +56,22 @@ public class Photo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Photo photo = (Photo) o;
-        return id == photo.id && Objects.equals(creationDate, photo.creationDate) && Objects.equals(name, photo.name) && Objects.equals(data, photo.data) && Objects.equals(author, photo.author);
+        return id == photo.id && Objects.equals(creationDate, photo.creationDate) && Objects.equals(name, photo.name) && Arrays.equals(data, photo.data) && Objects.equals(author, photo.author);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, creationDate, name, data, author);
+        return Objects.hash(id, creationDate, name, Arrays.hashCode(data), author);
+    }
+
+    @Override
+    public String toString() {
+        return "Photo{" +
+                "id=" + id +
+                ", creationDate=" + creationDate +
+                ", name='" + name + '\'' +
+                ", data=" + Arrays.toString(data) +
+                ", author=" + author +
+                '}';
     }
 }
