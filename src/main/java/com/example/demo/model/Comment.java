@@ -3,39 +3,30 @@ package com.example.demo.model;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.Instant;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
 public class Comment {
-    private String author;
-    private String creationDate;
-    private String content;
-    private Object photo;
+    private User author;
+    private Instant creationDate = Instant.now();
+    private String content = "";
+    private byte[] photo;
 
-    public String getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 
-    public String getCreationDate() {
-        String[] months = {"Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен",
-                "Окт", "Ноя", "Дек"};
-        GregorianCalendar gCalendar = new GregorianCalendar();
-        int year = gCalendar.get(Calendar.DATE);
-        String month = months[gCalendar.get(Calendar.MONTH)];
-        int date = gCalendar.get(Calendar.DATE);
-        int hour = gCalendar.get(Calendar.HOUR);
-        int minute = gCalendar.get(Calendar.MINUTE);
-        int second = gCalendar.get(Calendar.SECOND);
-        creationDate = year + " " + month + " " + date + " " + hour + ":" + minute + " " + second + "c";
+    public Instant getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(Instant creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -47,19 +38,12 @@ public class Comment {
         this.content = content;
     }
 
-    public Object getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Object photo) {
+    public void setPhoto(byte[] photo) {
         this.photo = photo;
-    }
-
-    public void start (User user, Comment photo) throws IOException {
-        setAuthor(String.format(user.getFirstName(), " ", user.getLastName()));
-        System.out.println("Write a comment");
-        setContent(new BufferedReader(new InputStreamReader(System.in)).readLine());
-        getCreationDate();
     }
 
     @Override
@@ -73,5 +57,15 @@ public class Comment {
     @Override
     public int hashCode() {
         return Objects.hash(author, creationDate, content, photo);
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "author='" + author + '\'' +
+                ", creationDate=" + creationDate +
+                ", content='" + content + '\'' +
+                ", photo=" + photo +
+                '}';
     }
 }
