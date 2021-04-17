@@ -21,7 +21,6 @@ public class UserController {
             generateUser("user3")
     );
 
-
     private static User generateUser(String login) {
         User result = new User();
         result.setId(idCounter++);

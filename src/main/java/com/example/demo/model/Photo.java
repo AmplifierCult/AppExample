@@ -9,7 +9,6 @@ public class Photo {
     private String data;
     private String author;
 
-
     public long getId() {
         return id;
     }
